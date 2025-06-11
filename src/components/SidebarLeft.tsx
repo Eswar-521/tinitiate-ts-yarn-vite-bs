@@ -10,6 +10,8 @@ const Sidebar = () => {
       <Link to="/services" className="nav-link">💼 Services</Link>
       <Link to="/contact" className="nav-link">📞 Contact</Link>
       <Link to="/profile" className="nav-link">👤 Profile</Link>
+      <Link to="/Catalog" className='nav-link'>🛍️ Catalog</Link>
+      <Link to="/comparison" className="nav-link">📊 Comparison</Link>
     </nav>
   );
 };

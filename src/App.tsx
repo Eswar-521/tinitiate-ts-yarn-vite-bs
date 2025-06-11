@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,22 +15,15 @@ import Notifications from "./pages/Notifications";
 import Messages from "./pages/Messages";
 import Actions from "./pages/Actions";
 import Logout from "./pages/Logout";
-import Catalog from "./pages/Catalog";  // ✅ New
-import Wishlist from "../pages/Wishlist";  // ✅ New 
-import Comparison from "../pages/Comparison";  // ✅ New
+import Catalog from "./pages/Catalog";
+import Comparison from "./pages/Comparison";
 
 const App: React.FC = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      {/* Header */}
       <Header />
-
-      {/* Main Content with Sidebars */}
       <div className="d-flex flex-grow-1">
-        {/* Left Sidebar */}
         <SidebarLeft />
-
-        {/* Main Content Area */}
         <div className="container-fluid px-4 py-3">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -41,17 +35,12 @@ const App: React.FC = () => {
             <Route path="/messages" element={<Messages />} />
             <Route path="/actions" element={<Actions />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/catalog" element={<Catalog />} />  {/* ✅ New */}
-            <Route path="/wishlist" element={<Wishlist />} />  {/* ✅ New */}
-            <Route path="/comparison" element={<Comparison />} />  {/* ✅ New */}
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/comparison" element={<Comparison />} />
           </Routes>
         </div>
-
-        {/* Right Sidebar */}
         <SidebarRight />
       </div>
-
-      {/* Footer */}
       <Footer />
     </div>
   );
