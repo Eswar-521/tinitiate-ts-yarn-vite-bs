@@ -1,4 +1,5 @@
 import React from "react";
+import { SiTypescript, SiYarn, SiVite, SiBootstrap } from "react-icons/si";
 
 const Header: React.FC = () => {
   const headerStyle = {
@@ -31,6 +32,14 @@ const Header: React.FC = () => {
     animation: 'rainbowText 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate',
     textShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
     textAlign: 'center' as const
+  };
+
+  const techLabelStyle = {
+    fontSize: '1.25rem',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    marginRight: '15px'
   };
 
   const buttonContainerStyle = {
@@ -71,36 +80,6 @@ const Header: React.FC = () => {
     boxShadow: '0 4px 15px rgba(255, 215, 0, 0.3)'
   };
 
-  const particleStyles = {
-    particle1: {
-      width: '8px',
-      height: '8px',
-      background: 'rgba(255, 255, 255, 0.6)',
-      borderRadius: '50%',
-      animation: 'float1 4s ease-in-out infinite'
-    },
-    particle2: {
-      width: '6px',
-      height: '6px',
-      background: 'rgba(255, 215, 0, 0.7)',
-      borderRadius: '50%',
-      position: 'absolute' as const,
-      top: '-20px',
-      left: '30px',
-      animation: 'float2 3s ease-in-out infinite'
-    },
-    particle3: {
-      width: '10px',
-      height: '10px',
-      background: 'rgba(255, 107, 107, 0.5)',
-      borderRadius: '50%',
-      position: 'absolute' as const,
-      top: '10px',
-      left: '-20px',
-      animation: 'float3 5s ease-in-out infinite'
-    }
-  };
-
   const handleLoginHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.currentTarget;
     target.style.transform = 'translateY(-3px) scale(1.05)';
@@ -139,46 +118,24 @@ const Header: React.FC = () => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
         @keyframes rainbowText {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
         @keyframes textGlow {
           0% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
           100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
         }
-        
         @keyframes floatingBubbles {
           0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
           50% { transform: translateY(-10px) rotate(180deg); opacity: 1; }
         }
-        
-        @keyframes float1 {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          33% { transform: translateY(-15px) translateX(10px); }
-          66% { transform: translateY(-5px) translateX(-5px); }
-        }
-        
-        @keyframes float2 {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) translateX(15px) rotate(180deg); }
-        }
-        
-        @keyframes float3 {
-          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-          25% { transform: translateY(-10px) translateX(-10px) scale(1.2); }
-          75% { transform: translateY(-5px) translateX(5px) scale(0.8); }
-        }
-        
         @keyframes buttonColorShift {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
         @keyframes buttonColorShift2 {
           0% { background-position: 0% 50%; }
           33% { background-position: 50% 100%; }
@@ -186,29 +143,22 @@ const Header: React.FC = () => {
           100% { background-position: 0% 50%; }
         }
       `}</style>
-      
+
       <header 
-        className="d-flex justify-content-center align-items-center p-3 position-relative"
+        className="d-flex justify-content-center align-items-center p-3 position-relative flex-column flex-md-row"
         style={headerStyle}
       >
-        {/* Animated background overlay */}
         <div style={overlayStyle} />
-        
-        {/* Center - Animated Logo */}
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <h3 style={logoStyle}>
-            TS-Yarn-Vite-BS
-          </h3>
-        </div>
-        
-        {/* Center floating particles */}
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={particleStyles.particle1} />
-          <div style={particleStyles.particle2} />
-          <div style={particleStyles.particle3} />
+
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={techLabelStyle}><SiTypescript size={24} /> TypeScript</div>
+          <div style={techLabelStyle}><SiYarn size={24} /> Yarn</div>
+          <div style={techLabelStyle}><SiVite size={24} /> Vite</div>
+          <div style={techLabelStyle}><SiBootstrap size={24} /> Bootstrap</div>
         </div>
 
-        {/* Top Right - Animated Buttons */}
+        <h1 style={logoStyle} className="mt-2">TS-Yarn-Vite-BS</h1>
+
         <div style={buttonContainerStyle}>
           <a 
             href="/login" 
