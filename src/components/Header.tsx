@@ -7,7 +7,8 @@ const Header: React.FC = () => {
     backgroundSize: '400% 400%',
     animation: 'gradientShift 4s ease infinite',
     color: '#ffffff',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    position: 'relative' as const
   };
 
   const overlayStyle = {
@@ -17,53 +18,53 @@ const Header: React.FC = () => {
     right: 0,
     bottom: 0,
     background: 'radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
-    animation: 'floatingBubbles 6s ease-in-out infinite'
+    animation: 'floatingBubbles 6s ease-in-out infinite',
+    zIndex: 0
   };
 
   const logoStyle = {
-    margin: 0,
     fontWeight: 'bold' as const,
     fontSize: '2.5rem',
-    background: 'linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7)',
+    background: 'linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1)',
     backgroundSize: '300% 300%',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     animation: 'rainbowText 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate',
     textShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
-    textAlign: 'center' as const
+    zIndex: 2,
+    textAlign: 'center' as const,
+    marginBottom: '10px'
   };
 
   const techLabelStyle = {
-    fontSize: '1.25rem',
+    fontSize: '1.1rem',
     display: 'flex',
     alignItems: 'center',
     gap: '6px',
-    marginRight: '15px'
+    margin: '0 10px',
+    zIndex: 2
   };
 
   const buttonContainerStyle = {
     position: 'absolute' as const,
-    top: '15px',
+    top: '10px',
     right: '20px',
     zIndex: 2
   };
 
   const loginButtonStyle = {
-    background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)',
+    background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
     backgroundSize: '200% 200%',
     animation: 'buttonColorShift 4s ease infinite',
     color: '#ffffff',
     border: '2px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '25px',
     textDecoration: 'none',
-    padding: '8px 20px',
+    padding: '6px 16px',
     fontWeight: '600' as const,
+    marginRight: '8px',
     transition: 'all 0.3s ease',
-    position: 'relative' as const,
-    overflow: 'hidden' as const,
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-    marginRight: '8px'
   };
 
   const signupButtonStyle = {
@@ -75,39 +76,8 @@ const Header: React.FC = () => {
     borderRadius: '25px',
     fontWeight: 'bold' as const,
     textDecoration: 'none',
-    padding: '8px 20px',
+    padding: '6px 16px',
     transition: 'all 0.3s ease',
-    boxShadow: '0 4px 15px rgba(255, 215, 0, 0.3)'
-  };
-
-  const handleLoginHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget;
-    target.style.transform = 'translateY(-3px) scale(1.05)';
-    target.style.boxShadow = '0 8px 25px rgba(255, 107, 107, 0.4)';
-    target.style.filter = 'brightness(1.2)';
-  };
-
-  const handleLoginLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget;
-    target.style.transform = 'translateY(0) scale(1)';
-    target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-    target.style.filter = 'brightness(1)';
-  };
-
-  const handleSignupHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget;
-    target.style.background = 'linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4)';
-    target.style.color = '#ffffff';
-    target.style.transform = 'translateY(-3px) scale(1.1)';
-    target.style.boxShadow = '0 10px 30px rgba(78, 205, 196, 0.5)';
-  };
-
-  const handleSignupLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget;
-    target.style.background = 'linear-gradient(45deg, #ffd700, #ffed4e, #ff6b6b)';
-    target.style.color = '#1a365d';
-    target.style.transform = 'translateY(0) scale(1)';
-    target.style.boxShadow = '0 4px 15px rgba(255, 215, 0, 0.3)';
   };
 
   return (
@@ -144,40 +114,24 @@ const Header: React.FC = () => {
         }
       `}</style>
 
-      <header 
-        className="d-flex justify-content-center align-items-center p-3 position-relative flex-column flex-md-row"
+      <header
+        className="text-center py-4 position-relative"
         style={headerStyle}
       >
         <div style={overlayStyle} />
 
-        <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={techLabelStyle}><SiTypescript size={24} /> TypeScript</div>
-          <div style={techLabelStyle}><SiYarn size={24} /> Yarn</div>
-          <div style={techLabelStyle}><SiVite size={24} /> Vite</div>
-          <div style={techLabelStyle}><SiBootstrap size={24} /> Bootstrap</div>
+        <div style={buttonContainerStyle}>
+          <a href="/login" style={loginButtonStyle}>Login</a>
+          <a href="/signup" style={signupButtonStyle}>Signup</a>
         </div>
 
-        <h1 style={logoStyle} className="mt-2">TS-Yarn-Vite-BS</h1>
+        <h1 style={logoStyle}>TS-Yarn-Vite-BS</h1>
 
-        <div style={buttonContainerStyle}>
-          <a 
-            href="/login" 
-            className="btn"
-            style={loginButtonStyle}
-            onMouseEnter={handleLoginHover}
-            onMouseLeave={handleLoginLeave}
-          >
-            Login
-          </a>
-          <a 
-            href="/signup" 
-            className="btn"
-            style={signupButtonStyle}
-            onMouseEnter={handleSignupHover}
-            onMouseLeave={handleSignupLeave}
-          >
-            Signup
-          </a>
+        <div className="d-flex justify-content-center flex-wrap mt-2" style={{ zIndex: 2, position: 'relative' }}>
+          <div style={techLabelStyle}><SiTypescript size={22} /> TypeScript</div>
+          <div style={techLabelStyle}><SiYarn size={22} /> Yarn</div>
+          <div style={techLabelStyle}><SiVite size={22} /> Vite</div>
+          <div style={techLabelStyle}><SiBootstrap size={22} /> Bootstrap</div>
         </div>
       </header>
     </>

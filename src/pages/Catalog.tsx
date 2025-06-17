@@ -19,19 +19,27 @@ const Catalog = () => {
   );
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Catalog</h2>
-      <input
-        type="text"
-        placeholder="Search..."
-        className="w-full p-2 mb-4 border border-gray-300 rounded"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <div className="p-4 bg-light min-vh-100">
+      <h2 className="text-center mb-4 display-5 fw-bold text-primary">Product Catalog</h2>
+
+      <div className="d-flex justify-content-center mb-4">
+        <input
+          type="text"
+          placeholder="🔍 Search for products..."
+          className="form-control w-50 shadow-sm"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <div className="container">
+        <div className="row g-4">
+          {filteredProducts.map((product) => (
+            <div className="col-sm-6 col-md-4 col-lg-3" key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

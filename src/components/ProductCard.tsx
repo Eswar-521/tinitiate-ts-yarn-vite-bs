@@ -1,30 +1,39 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product }: any) => {
-  const navigate = useNavigate();
-
-  const handleCompare = () => {
+const ProductCard = ({ product }: { product: any }) => {
+  const handleAddToComparison = () => {
     const existing = JSON.parse(localStorage.getItem("comparison") || "[]");
-    const alreadyAdded = existing.find((p: any) => p.id === product.id);
-    if (!alreadyAdded) {
+    const alreadyExists = existing.some((item: any) => item.id === product.id);
+
+    if (!alreadyExists) {
       const updated = [...existing, product];
       localStorage.setItem("comparison", JSON.stringify(updated));
+      alert(`${product.name} added to comparison.`);
+    } else {
+      alert(`${product.name} is already in comparison.`);
     }
-    navigate("/comparison");
   };
 
   return (
-    <div className="border rounded shadow-sm p-2 bg-white hover:shadow-md transition text-xs">
-      <h5 className="text-sm font-medium mb-1">{product.name}</h5>
-      <p className="text-xs text-gray-700">Price: ${product.price}</p>
-      <p className="text-[11px] text-gray-500 mb-2">{product.description}</p>
-      <button
-        onClick={handleCompare}
-        className="text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Add to Compare
-      </button>
+    <div className="card shadow-sm h-100 border-0">
+      <div className="card-body d-flex flex-column justify-content-between">
+        <div>
+          <h5 className="card-title text-primary fw-bold">{product.name}</h5>
+          <p className="card-text text-muted small">{product.description}</p>
+        </div>
+        <div>
+          <h6 className="text-success fw-bold mb-2">${product.price}</h6>
+          <button className="btn btn-outline-primary w-100 mb-2">
+            View Details
+          </button>
+          <button
+            className="btn btn-warning w-100"
+            onClick={handleAddToComparison}
+          >
+            ➕ Add to Comparison
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

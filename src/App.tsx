@@ -9,7 +9,10 @@ import SidebarRight from "./components/SidebarRight";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import Profile from "./pages/Profile";
+import Services from "./pages/Services";
+import Contact from "./pages/Contact";
 import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
 import Messages from "./pages/Messages";
@@ -27,6 +30,9 @@ const App: React.FC = () => {
         <div className="container-fluid px-4 py-3">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path='/about' element={<About/>}/>
+            <Route path="/services" element={<Services/>}/>
+            <Route path="/contact" element={<Contact/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
